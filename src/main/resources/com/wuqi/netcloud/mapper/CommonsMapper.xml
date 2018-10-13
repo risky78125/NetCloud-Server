@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="commons">
+
+    <resultMap id="roleMap" type="roleEntity">
+        <id column="role_id" property="roleId"/>
+        <result column="role_name" property="roleName"/>
+    </resultMap>
+
+    <resultMap id="moduleMap" type="moduleEntity">
+        <id column="module_id" property="moduleId"/>
+        <result column="module_name" property="moduleName"/>
+    </resultMap>
+
+    <resultMap id="roleModuleMap" type="roleModule">
+        <result column="role_id" property="roleId"/>
+        <result column="module_id" property="moduleId"/>
+    </resultMap>
+
+</mapper>

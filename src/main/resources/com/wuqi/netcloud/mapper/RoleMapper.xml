@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.wuqi.netcloud.mapper.RoleMapper">
+
+    <select id="findTotalSize" resultType="java.lang.Integer">
+        select count(*)
+        from role_info
+    </select>
+
+    <select id="findWithModulesByPage" resultType="roleExMap">
+        select role.role_id, role.role_name, group_concat(module.module_name) as moduleNames
+        from role_info role
+                 left join role_module rm on role.role_id = rm.role_id
+                 left join module_info module on rm.module_id = module.module_id
+        group by role.role_id
+        limit #{offset}, #{count}
+    </select>
+
+    <resultMap id="moduleMap" type="moduleExMap" extends="commons.moduleMap">
+        <result column="status" property="isSelected"/>
+    </resultMap>
+
+    <resultMap id="roleMap" type="roleEntity" extends="commons.roleMap">
+        <collection property="moduleList" ofType="moduleExMap" resultMap="moduleMap">
+        </collection>
+    </resultMap>
+
+    <select id="findRoleDetailsById" resultMap="roleMap">
+        select role.role_id,
+               role.role_name,
+               module.module_id,
+               module.module_name,
+               (role.role_id = r2.role_id) as status
+        from role_info role
+                 cross join module_info module
+                 left join role_module rm on module.module_id = rm.module_id
+                 left join role_info r2 on rm.role_id = r2.role_id
+        where role.role_id = #{roleId}
+        order by role.role_id, module.module_id
+    </select>
+
+    <insert id="addOne">
+        insert into role_info (role_name)
+        values (#{roleName});
+    </insert>
+
+    <delete id="deleteByRoleId">
+        delete
+        from role_info
+        where role_id = #{roleId}
+    </delete>
+
+    <update id="update">
+        update role_info
+        set role_name = #{roleName}
+        where role_id = #{roleId}
+    </update>
+
+</mapper>

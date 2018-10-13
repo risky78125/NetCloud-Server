@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.wuqi.netcloud.mapper.RoleModuleMapper">
+
+    <insert id="addAll">
+        insert into role_module values
+        <foreach collection="list" item="rm" separator=",">
+            (#{roleId}, #{moduleId})
+        </foreach>
+    </insert>
+
+    <delete id="deleteByRoleId">
+        delete from role_module where role_id = #{roleId}
+    </delete>
+
+</mapper>

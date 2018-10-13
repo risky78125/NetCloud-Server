@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    
+    <settings>
+        <!--mybatis自带了一级缓存, 一级缓存的作用范围是同一个SqlSession,
+        也就是说, 在同一个SqlSession下, 进行的多次同样的查询, 会有缓存.
+        在statement标签中, 有flushCache属性, 表示是否清空缓存区,
+            select的默认值是false, insert/update/delete的默认值是true-->
+        <!--这个开关表示是否开启二级缓存功能, 默认值为true-->
+        <!--二级缓存表示, 同一个Mapper中的同一个查询是有缓存的,
+            与是否是同一个SqlSession无关-->
+        <!--注意: 1. SqlSession关闭的时候才会向二级缓存中缓存数据,
+                  2. 实体类需要序列化-->
+        <!--在select中可以使用useCache属性单独控制该select是否使用缓存-->
+        <!--可以自定义二级缓存的框架 ehcache  oscache-->
+        <setting name="cacheEnabled" value="true"/>
+        <!--懒加载开关, 默认值为false,
+            如果为false, 那么在查询的时候, 会把所有关联的SQL都进行查询
+            如果设置true, 关联的SQL会根据需要的时候才会进行查询-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!--积极的懒加载, 调用某个对象的任意方法, 都会把他关联的其他SQL进行调用-->
+        <!--例如, 获取goods的名字属性, 也会查询该商品的类别-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!--下划线形式的列名与小驼峰形式的属性名自动映射-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--自动映射适合于单表查询, 一对一的多表查询,
+            但是一对多出查询很容出现与预计的结果不一致的情况-->
+        <!--<setting name="autoMappingBehavior" value="FULL"/>-->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!--<mappers>-->
+        <!--<mapper resource="com/wuqi/netcloud/mapper/CommonsMapper.xml"/>-->
+    <!--</mappers>-->
+
+</configuration>
