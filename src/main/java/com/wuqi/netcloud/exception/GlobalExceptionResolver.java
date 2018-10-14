@@ -1,6 +1,5 @@
 package com.wuqi.netcloud.exception;
 
-import com.wuqi.netcloud.commons.ResultWrapper;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,12 +19,11 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
             JsonResultException ex = (JsonResultException) e;
             code = ex.getCode();
             message = ex.getMessage();
-            mv.setView(new MappingJackson2JsonView());
-            mv.addObject(ResultWrapper.error(code, message));
-        } else {
-            mv.setView(new MappingJackson2JsonView());
-            mv.addObject(ResultWrapper.error(code, message));
         }
+        mv.setView(new MappingJackson2JsonView());
+        mv.addObject("status", false);
+        mv.addObject("code", code);
+        mv.addObject("message", message);
         return mv;
     }
 }

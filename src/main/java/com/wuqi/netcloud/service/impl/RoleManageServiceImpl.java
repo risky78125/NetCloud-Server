@@ -48,20 +48,17 @@ public class RoleManageServiceImpl implements RoleManageService {
     @Transactional
     @Override
     public ResultWrapper addRoleWithModules(RoleParams role) {
-        try {
-            this.roleMapper.addOne(role);
-            Integer roleId = role.getRoleId();
-            List<RoleModule> rms = new ArrayList<>();
-            for (Integer moduleId : role.getModuleIds()) {
-                RoleModule rm = new RoleModule(roleId, moduleId);
-                rms.add(rm);
-            }
-            this.roleModuleMapper.addAll(rms);
-            return ResultWrapper.success();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new JsonResultException(500, "角色插入失败");
+        this.roleMapper.addOne(role);
+        Integer roleId = role.getRoleId();
+        List<RoleModule> rms = new ArrayList<>();
+        List<Integer> moduleIds = role.getModuleIds();
+        if (moduleIds == null || moduleIds.size() == 0) throw new JsonResultException(400, "请至少选择一个权限");
+        for (Integer moduleId : moduleIds) {
+            RoleModule rm = new RoleModule(roleId, moduleId);
+            rms.add(rm);
         }
+        this.roleModuleMapper.addAll(rms);
+        return ResultWrapper.success();
     }
 
     @Transactional
