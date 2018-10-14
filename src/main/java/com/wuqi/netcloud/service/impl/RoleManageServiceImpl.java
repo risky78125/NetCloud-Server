@@ -58,7 +58,7 @@ public class RoleManageServiceImpl implements RoleManageService {
             rms.add(rm);
         }
         this.roleModuleMapper.addAll(rms);
-        return ResultWrapper.success();
+        return ResultWrapper.success("新增角色\"" + role.getRoleName() + "\"成功");
     }
 
     @Transactional
@@ -81,7 +81,7 @@ public class RoleManageServiceImpl implements RoleManageService {
             rms.add(rm);
         }
         this.roleModuleMapper.addAll(rms);
-        return ResultWrapper.success();
+        return ResultWrapper.success("更新角色\"" + role.getRoleName() + "\"成功");
     }
 
     @Override

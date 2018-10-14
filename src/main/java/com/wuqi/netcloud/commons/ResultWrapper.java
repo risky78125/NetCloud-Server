@@ -43,6 +43,10 @@ public final class ResultWrapper<T> {
         return new ResultWrapper<>(false, code, message, null);
     }
 
+    public static ResultWrapper success(String message) {
+        return new ResultWrapper<>(true, 200, message, null);
+    }
+
     public static ResultWrapper success() {
         return new ResultWrapper<>(true, 200, "OK", null);
     }

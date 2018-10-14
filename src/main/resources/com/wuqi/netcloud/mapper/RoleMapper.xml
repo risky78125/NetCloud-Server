@@ -34,7 +34,7 @@
                (role.role_id = r2.role_id) as status
         from role_info role
                  cross join module_info module
-                 left join role_module rm on module.module_id = rm.module_id
+                 left join role_module rm on module.module_id = rm.module_id and rm.role_id = #{roleId}
                  left join role_info r2 on rm.role_id = r2.role_id
         where role.role_id = #{roleId}
         order by role.role_id, module.module_id
