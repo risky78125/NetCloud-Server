@@ -56,7 +56,6 @@ public class RoleManageServiceImpl implements RoleManageService {
                 RoleModule rm = new RoleModule(roleId, moduleId);
                 rms.add(rm);
             }
-            System.out.println(1 / 0);
             this.roleModuleMapper.addAll(rms);
             return ResultWrapper.success();
         } catch (Exception e) {
