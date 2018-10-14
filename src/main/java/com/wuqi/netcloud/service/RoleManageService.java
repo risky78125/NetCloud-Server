@@ -14,4 +14,6 @@ public interface RoleManageService {
     ResultWrapper deleteRoleAndModules(Integer roleId);
 
     ResultWrapper updateRoleWithModules(RoleParams role);
+
+    ResultWrapper allModules();
 }

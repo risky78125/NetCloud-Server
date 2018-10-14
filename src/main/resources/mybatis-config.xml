@@ -16,6 +16,7 @@
         <!--在select中可以使用useCache属性单独控制该select是否使用缓存-->
         <!--可以自定义二级缓存的框架 ehcache  oscache-->
         <setting name="cacheEnabled" value="true"/>
+        <setting name="useGeneratedKeys" value="true"/>
         <!--懒加载开关, 默认值为false,
             如果为false, 那么在查询的时候, 会把所有关联的SQL都进行查询
             如果设置true, 关联的SQL会根据需要的时候才会进行查询-->

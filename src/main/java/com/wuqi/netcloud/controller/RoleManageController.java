@@ -25,7 +25,7 @@ public class RoleManageController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResultWrapper add(RoleParams role) {
+    public ResultWrapper add(@RequestBody RoleParams role) {
         return this.roleManageService.addRoleWithModules(role);
     }
 
@@ -35,8 +35,12 @@ public class RoleManageController {
     }
 
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
-    public ResultWrapper modify(RoleParams role) {
+    public ResultWrapper modify(@RequestBody RoleParams role) {
         return this.roleManageService.updateRoleWithModules(role);
     }
 
+    @RequestMapping("/modules")
+    public ResultWrapper allModules() {
+        return this.roleManageService.allModules();
+    }
 }

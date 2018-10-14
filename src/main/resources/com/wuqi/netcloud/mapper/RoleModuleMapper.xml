@@ -6,7 +6,7 @@
     <insert id="addAll">
         insert into role_module values
         <foreach collection="list" item="rm" separator=",">
-            (#{roleId}, #{moduleId})
+            (#{rm.roleId}, #{rm.moduleId})
         </foreach>
     </insert>
 
