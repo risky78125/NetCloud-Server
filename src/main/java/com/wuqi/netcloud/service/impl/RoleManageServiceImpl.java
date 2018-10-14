@@ -76,7 +76,9 @@ public class RoleManageServiceImpl implements RoleManageService {
         Integer roleId = role.getRoleId();
         this.roleModuleMapper.deleteByRoleId(roleId);
         List<RoleModule> rms = new ArrayList<>();
-        for (Integer moduleId : role.getModuleIds()) {
+        List<Integer> moduleIds = role.getModuleIds();
+        if (moduleIds == null || moduleIds.size() == 0) throw new JsonResultException(400, "请至少选择一个权限");
+        for (Integer moduleId : moduleIds) {
             RoleModule rm = new RoleModule(roleId, moduleId);
             rms.add(rm);
         }

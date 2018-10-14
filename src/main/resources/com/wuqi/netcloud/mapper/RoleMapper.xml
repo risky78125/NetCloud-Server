@@ -3,6 +3,8 @@
 
 <mapper namespace="com.wuqi.netcloud.mapper.RoleMapper">
 
+    <cache />
+
     <select id="findTotalSize" resultType="java.lang.Integer">
         select count(*)
         from role_info

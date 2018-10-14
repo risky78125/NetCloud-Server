@@ -3,6 +3,8 @@
 
 <mapper namespace="com.wuqi.netcloud.mapper.ModuleMapper">
 
+    <cache />
+
     <select id="findAll" resultType="moduleEntity">
         select * from module_info
     </select>
