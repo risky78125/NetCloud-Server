@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GlobalExceptionResolver implements HandlerExceptionResolver {
     @Override
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
+        e.printStackTrace();
         ModelAndView mv = new ModelAndView();
         String message = "未知系统错误";
         int code = 400;

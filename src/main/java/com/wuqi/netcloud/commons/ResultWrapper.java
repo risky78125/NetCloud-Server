@@ -1,6 +1,7 @@
 package com.wuqi.netcloud.commons;
 
-import java.util.ArrayList;
+import com.wuqi.netcloud.mapper.condition.PageableExample;
+
 import java.util.List;
 
 public final class ResultWrapper<T> {
@@ -27,7 +28,7 @@ public final class ResultWrapper<T> {
         return success(totalSize, 1, items);
     }
 
-    public static <T> ResultWrapper success(int totalSize, PageableParams params, List<T> items) {
+    public static <T> ResultWrapper success(int totalSize, PageableExample params, List<T> items) {
         Data<T> data = new Data<>(totalSize, items);
         data.setPageSize(params.getCount());
         return new ResultWrapper<>(true, 200, "OK", data);

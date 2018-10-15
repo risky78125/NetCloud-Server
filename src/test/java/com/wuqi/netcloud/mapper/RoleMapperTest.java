@@ -1,6 +1,6 @@
 package com.wuqi.netcloud.mapper;
 
-import com.wuqi.netcloud.commons.PageableParams;
+import com.wuqi.netcloud.mapper.condition.PageableExample;
 import com.wuqi.netcloud.entity.RoleEntity;
 import com.wuqi.netcloud.entity.map.RoleExMap;
 import org.junit.Test;
@@ -11,8 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.Resource;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 
 @RunWith(SpringRunner.class)
@@ -31,7 +29,7 @@ public class RoleMapperTest {
     @Test
     public void findWithModulesByPage() {
         System.out.println("------- findWithModulesByPage -----------");
-        PageableParams params = new PageableParams(3, 2);
+        PageableExample params = new PageableExample(3, 2);
         List<RoleExMap> list = roleMapper.findWithModulesByPage(params);
         list.forEach(System.out::println);
     }

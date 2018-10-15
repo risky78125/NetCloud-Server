@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.wuqi.netcloud.mapper.AdminMapper">
+
+    <sql id="sql-admins-condition">
+        select admin.admin_id,
+        admin.admin_name,
+        admin.admin_code,
+        admin.telephone,
+        admin.email,
+        admin.enrolldate,
+        group_concat(role.role_name) as role_names
+        from admin_info admin
+        left join admin_role ar on admin.admin_id = ar.admin_id
+        left join role_info role on ar.role_id = role.role_id
+        <if test="moduleId != null">
+            where ar.role_id in (select role_id from role_module where module_id = #{moduleId})
+        </if>
+        group by admin.admin_id
+        <if test="roleName != null and roleName.length != 0">
+            having role_names like #{roleName}
+        </if>
+    </sql>
+
+    <select id="countByCondition" resultType="java.lang.Integer">
+        select count(*) from (
+                <include refid="sql-admins-condition" />
+              ) as temp;
+    </select>
+
+    <select id="findAllByCondition" resultType="adminExMap">
+        <include refid="sql-admins-condition" />
+        order by admin.admin_id
+        limit #{offset}, #{count}
+    </select>
+
+    <cache />
+
+</mapper>

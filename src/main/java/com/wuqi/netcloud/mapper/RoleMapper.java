@@ -1,6 +1,6 @@
 package com.wuqi.netcloud.mapper;
 
-import com.wuqi.netcloud.commons.PageableParams;
+import com.wuqi.netcloud.mapper.condition.PageableExample;
 import com.wuqi.netcloud.entity.RoleEntity;
 import com.wuqi.netcloud.entity.map.RoleExMap;
 
@@ -10,7 +10,7 @@ public interface RoleMapper {
 
     int findTotalSize();
 
-    List<RoleExMap> findWithModulesByPage(PageableParams params);
+    List<RoleExMap> findWithModulesByPage(PageableExample params);
 
     RoleEntity findRoleDetailsById(Integer roleId);
 

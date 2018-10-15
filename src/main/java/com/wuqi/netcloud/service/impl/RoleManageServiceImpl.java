@@ -1,6 +1,6 @@
 package com.wuqi.netcloud.service.impl;
 
-import com.wuqi.netcloud.commons.PageableParams;
+import com.wuqi.netcloud.mapper.condition.PageableExample;
 import com.wuqi.netcloud.commons.ResultWrapper;
 import com.wuqi.netcloud.controller.params.RoleParams;
 import com.wuqi.netcloud.entity.ModuleEntity;
@@ -33,7 +33,7 @@ public class RoleManageServiceImpl implements RoleManageService {
 
     @Override
     public ResultWrapper findRoleByPage(int page) {
-        PageableParams params = PageableParams.create(page);
+        PageableExample params = PageableExample.create(page);
         int totalSize = this.roleMapper.findTotalSize();
         List<RoleExMap> list = this.roleMapper.findWithModulesByPage(params);
         return ResultWrapper.success(totalSize, params, list);
