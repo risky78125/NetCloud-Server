@@ -3,6 +3,8 @@
 
 <mapper namespace="com.wuqi.netcloud.mapper.AdminMapper">
 
+    <cache />
+
     <sql id="sql-admins-condition">
         select admin.admin_id,
         admin.admin_name,
@@ -38,6 +40,40 @@
         limit #{offset}, #{count}
     </select>
 
-    <cache />
+    <resultMap id="roleMap" type="roleExMap" extends="commons.roleMap">
+        <result column="selected" property="isSelected"/>
+    </resultMap>
+
+    <resultMap id="adminMap" type="adminEntity" extends="commons.adminMap">
+        <collection property="roleList" ofType="roleEntity" resultMap="roleMap"/>
+    </resultMap>
+
+    <select id="findDetailsById" resultMap="adminMap">
+        select admin.*, role.role_id, role.role_name, admin.admin_id = a2.admin_id as selected
+        from admin_info admin
+                 cross join role_info role
+                 left join admin_role ar on role.role_id = ar.role_id and ar.admin_id = admin.admin_id
+                 left join admin_info a2 on ar.admin_id = a2.admin_id
+        where admin.admin_id = #{adminId}
+        order by admin.admin_id, role.role_id
+    </select>
+
+    <insert id="addOne">
+        insert into admin_info (admin_code, password, admin_name, telephone, email, enrolldate)
+        values (#{adminCode}, #{password}, #{adminName}, #{telephone}, #{email}, #{enrolldate});
+    </insert>
+
+    <update id="updateOne">
+        update admin_info
+        set admin_name = #{adminName},
+            telephone = #{telephone},
+            email = #{email}
+        where admin_id = #{adminId};
+    </update>
+
+    <delete id="deleteById">
+        delete from admin_info where admin_id = #{adminId}
+    </delete>
+
 
 </mapper>

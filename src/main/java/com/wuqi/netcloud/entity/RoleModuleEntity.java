@@ -1,15 +1,15 @@
 package com.wuqi.netcloud.entity;
 
 
-public class RoleModule {
+public class RoleModuleEntity {
 
     private Integer roleId;
     private Integer moduleId;
 
-    public RoleModule() {
+    public RoleModuleEntity() {
     }
 
-    public RoleModule(Integer roleId, Integer moduleId) {
+    public RoleModuleEntity(Integer roleId, Integer moduleId) {
         this.roleId = roleId;
         this.moduleId = moduleId;
     }

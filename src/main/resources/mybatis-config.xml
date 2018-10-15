@@ -32,8 +32,8 @@
         <setting name="logImpl" value="LOG4J"/>
     </settings>
 
-    <!--<mappers>-->
-        <!--<mapper resource="com/wuqi/netcloud/mapper/CommonsMapper.xml"/>-->
-    <!--</mappers>-->
+    <mappers>
+        <mapper resource="com/wuqi/netcloud/mapper/CommonsMapper.xml"/>
+    </mappers>
 
 </configuration>

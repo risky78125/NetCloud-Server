@@ -13,9 +13,24 @@
         <result column="module_name" property="moduleName"/>
     </resultMap>
 
-    <resultMap id="roleModuleMap" type="roleModule">
+    <resultMap id="roleModuleMap" type="RoleModuleEntity">
         <result column="role_id" property="roleId"/>
         <result column="module_id" property="moduleId"/>
+    </resultMap>
+
+    <resultMap id="adminMap" type="adminEntity">
+        <id column="admin_id" property="adminId"/>
+        <result column="admin_code" property="adminCode"/>
+        <result column="password" property="password"/>
+        <result column="admin_name" property="adminName"/>
+        <result column="telephone" property="telephone"/>
+        <result column="email" property="email"/>
+        <result column="enrolldate" property="enrolldate"/>
+    </resultMap>
+
+    <resultMap id="adminRoleMap" type="adminRoleEntity">
+        <result column="admin_id" property="adminId"/>
+        <result column="role_id" property="roleId"/>
     </resultMap>
 
 </mapper>

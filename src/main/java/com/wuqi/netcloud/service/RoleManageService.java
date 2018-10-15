@@ -1,7 +1,7 @@
 package com.wuqi.netcloud.service;
 
 import com.wuqi.netcloud.commons.ResultWrapper;
-import com.wuqi.netcloud.controller.params.RoleParams;
+import com.wuqi.netcloud.controller.params.RoleBody;
 
 public interface RoleManageService {
 
@@ -9,11 +9,11 @@ public interface RoleManageService {
 
     ResultWrapper findRoleDetails(Integer roleId);
 
-    ResultWrapper addRoleWithModules(RoleParams role);
+    ResultWrapper addRoleWithModules(RoleBody role);
 
     ResultWrapper deleteRoleAndModules(Integer roleId);
 
-    ResultWrapper updateRoleWithModules(RoleParams role);
+    ResultWrapper updateRoleWithModules(RoleBody role);
 
     ResultWrapper allModules();
 }

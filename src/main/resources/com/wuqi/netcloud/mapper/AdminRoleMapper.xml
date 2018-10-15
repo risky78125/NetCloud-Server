@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.wuqi.netcloud.mapper.AdminRoleMapper">
+
+    <insert id="addAll">
+        insert into admin_role (admin_id, role_id)
+        values
+        <foreach collection="list" item="ar" separator=",">
+            (#{ar.adminId}, #{ar.roleId})
+        </foreach>
+    </insert>
+
+    <delete id="deleteByAdminId">
+        delete from admin_role where admin_id = #{adminId}
+    </delete>
+
+</mapper>

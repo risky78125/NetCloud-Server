@@ -5,7 +5,7 @@ import com.wuqi.netcloud.entity.RoleEntity;
 
 import java.util.List;
 
-public class RoleParams extends RoleEntity {
+public class RoleBody extends RoleEntity {
 
     private List<Integer> moduleIds;
 

@@ -1,7 +1,7 @@
 package com.wuqi.netcloud.controller;
 
 import com.wuqi.netcloud.commons.ResultWrapper;
-import com.wuqi.netcloud.controller.params.RoleParams;
+import com.wuqi.netcloud.controller.params.RoleBody;
 import com.wuqi.netcloud.service.RoleManageService;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +25,7 @@ public class RoleManageController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResultWrapper add(@RequestBody RoleParams role) {
+    public ResultWrapper add(@RequestBody RoleBody role) {
         return this.roleManageService.addRoleWithModules(role);
     }
 
@@ -35,7 +35,7 @@ public class RoleManageController {
     }
 
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
-    public ResultWrapper modify(@RequestBody RoleParams role) {
+    public ResultWrapper modify(@RequestBody RoleBody role) {
         return this.roleManageService.updateRoleWithModules(role);
     }
 

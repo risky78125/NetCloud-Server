@@ -2,10 +2,10 @@ package com.wuqi.netcloud.service.impl;
 
 import com.wuqi.netcloud.mapper.condition.PageableExample;
 import com.wuqi.netcloud.commons.ResultWrapper;
-import com.wuqi.netcloud.controller.params.RoleParams;
+import com.wuqi.netcloud.controller.params.RoleBody;
 import com.wuqi.netcloud.entity.ModuleEntity;
 import com.wuqi.netcloud.entity.RoleEntity;
-import com.wuqi.netcloud.entity.RoleModule;
+import com.wuqi.netcloud.entity.RoleModuleEntity;
 import com.wuqi.netcloud.entity.map.RoleExMap;
 import com.wuqi.netcloud.exception.JsonResultException;
 import com.wuqi.netcloud.mapper.ModuleMapper;
@@ -47,14 +47,14 @@ public class RoleManageServiceImpl implements RoleManageService {
 
     @Transactional
     @Override
-    public ResultWrapper addRoleWithModules(RoleParams role) {
+    public ResultWrapper addRoleWithModules(RoleBody role) {
         this.roleMapper.addOne(role);
         Integer roleId = role.getRoleId();
-        List<RoleModule> rms = new ArrayList<>();
+        List<RoleModuleEntity> rms = new ArrayList<>();
         List<Integer> moduleIds = role.getModuleIds();
         if (moduleIds == null || moduleIds.size() == 0) throw new JsonResultException(400, "请至少选择一个权限");
         for (Integer moduleId : moduleIds) {
-            RoleModule rm = new RoleModule(roleId, moduleId);
+            RoleModuleEntity rm = new RoleModuleEntity(roleId, moduleId);
             rms.add(rm);
         }
         this.roleModuleMapper.addAll(rms);
@@ -71,15 +71,15 @@ public class RoleManageServiceImpl implements RoleManageService {
 
     @Transactional
     @Override
-    public ResultWrapper updateRoleWithModules(RoleParams role) {
+    public ResultWrapper updateRoleWithModules(RoleBody role) {
         this.roleMapper.update(role);
         Integer roleId = role.getRoleId();
         this.roleModuleMapper.deleteByRoleId(roleId);
-        List<RoleModule> rms = new ArrayList<>();
+        List<RoleModuleEntity> rms = new ArrayList<>();
         List<Integer> moduleIds = role.getModuleIds();
         if (moduleIds == null || moduleIds.size() == 0) throw new JsonResultException(400, "请至少选择一个权限");
         for (Integer moduleId : moduleIds) {
-            RoleModule rm = new RoleModule(roleId, moduleId);
+            RoleModuleEntity rm = new RoleModuleEntity(roleId, moduleId);
             rms.add(rm);
         }
         this.roleModuleMapper.addAll(rms);
