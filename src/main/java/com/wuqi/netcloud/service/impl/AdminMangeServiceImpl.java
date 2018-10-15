@@ -24,7 +24,7 @@ public class AdminMangeServiceImpl implements AdminMangeService {
         AdminExample example = new AdminExample();
         example.setModuleId(params.getModuleId());
         String roleName = params.getRoleName();
-        roleName = roleName != null ? ("%" + roleName + "%") : null;
+        roleName = roleName != null && roleName.length() > 0 ? ("%" + roleName + "%") : null;
         example.setRoleName(roleName);
         PageableExample pageable = PageableExample.create(params.getPage(), params.getCount());
         example.setOffset(pageable.getOffset());

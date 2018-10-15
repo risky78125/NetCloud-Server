@@ -14,8 +14,11 @@
         from admin_info admin
         left join admin_role ar on admin.admin_id = ar.admin_id
         left join role_info role on ar.role_id = role.role_id
-        <if test="moduleId != null">
-            where ar.role_id in (select role_id from role_module where module_id = #{moduleId})
+        <if test="moduleId != null and moduleId != 0">
+            where admin.admin_id in (
+            select ar.admin_id from admin_role ar
+            left join role_module rm on ar.role_id = rm.role_id
+            where module_id = #{moduleId})
         </if>
         group by admin.admin_id
         <if test="roleName != null and roleName.length != 0">
