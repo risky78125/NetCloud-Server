@@ -12,6 +12,7 @@ import com.wuqi.netcloud.mapper.AdminRoleMapper;
 import com.wuqi.netcloud.mapper.condition.AdminExample;
 import com.wuqi.netcloud.mapper.condition.PageableExample;
 import com.wuqi.netcloud.service.AdminMangeService;
+import com.wuqi.netcloud.utils.TimeUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,6 +59,7 @@ public class AdminMangeServiceImpl implements AdminMangeService {
         if (roleIds == null || roleIds.size() == 0) {
             throw new JsonResultException(400, "请至少选择一个角色");
         }
+        admin.setEnrolldate(TimeUtils.currentDate());
         this.adminMapper.addOne(admin);
         List<AdminRoleEntity> list = new ArrayList<>();
         Integer adminId = admin.getAdminId();
@@ -83,7 +85,8 @@ public class AdminMangeServiceImpl implements AdminMangeService {
             list.add(new AdminRoleEntity(adminId, roleId));
         }
         this.adminRoleMapper.addAll(list);
-        return ResultWrapper.success("管理员" + admin.getAdminCode() + "插入成功");
+        AdminEntity one = this.adminMapper.findOne(admin.getAdminId());
+        return ResultWrapper.success("管理员" + one.getAdminCode() + "修改成功");
     }
 
     @Transactional

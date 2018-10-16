@@ -20,4 +20,6 @@ public interface AdminMapper {
     int updateOne(AdminBody admin);
 
     int deleteById(Integer adminId);
+
+    AdminEntity findOne(Integer adminId);
 }

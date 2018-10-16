@@ -65,7 +65,7 @@
         order by admin.admin_id, role.role_id
     </select>
 
-    <insert id="addOne">
+    <insert id="addOne" keyColumn="admin_id" keyProperty="adminId">
         insert into admin_info (admin_code, password, admin_name, telephone, email, enrolldate)
         values (#{adminCode}, #{password}, #{adminName}, #{telephone}, #{email}, #{enrolldate});
     </insert>
@@ -82,5 +82,8 @@
         delete from admin_info where admin_id = #{adminId}
     </delete>
 
+    <select id="findOne" resultType="adminEntity">
+        select * from admin_info where admin_id = #{adminId}
+    </select>
 
 </mapper>

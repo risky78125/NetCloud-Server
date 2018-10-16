@@ -4,10 +4,7 @@ import com.wuqi.netcloud.commons.ResultWrapper;
 import com.wuqi.netcloud.controller.params.AdminBody;
 import com.wuqi.netcloud.controller.params.AdminParams;
 import com.wuqi.netcloud.service.AdminMangeService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -29,12 +26,12 @@ public class AdminManageController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResultWrapper addOne(AdminBody admin) {
+    public ResultWrapper addOne(@RequestBody AdminBody admin) {
         return this.adminMangeService.addAdminWithRoles(admin);
     }
 
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
-    public ResultWrapper update(AdminBody admin) {
+    public ResultWrapper update(@RequestBody AdminBody admin) {
         return this.adminMangeService.updateAdminWithRoles(admin);
     }
 
