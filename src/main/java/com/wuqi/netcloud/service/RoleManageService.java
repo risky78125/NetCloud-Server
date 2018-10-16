@@ -15,5 +15,5 @@ public interface RoleManageService {
 
     ResultWrapper updateRoleWithModules(RoleBody role);
 
-    ResultWrapper allModules();
+    ResultWrapper simpleList();
 }

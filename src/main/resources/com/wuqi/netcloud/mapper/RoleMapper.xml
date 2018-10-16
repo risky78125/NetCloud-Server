@@ -59,4 +59,8 @@
         where role_id = #{roleId}
     </update>
 
+    <select id="simpleList" resultType="roleEntity">
+        select role_id, role_name from role_info
+    </select>
+
 </mapper>

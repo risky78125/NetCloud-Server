@@ -39,8 +39,10 @@ public class RoleManageController {
         return this.roleManageService.updateRoleWithModules(role);
     }
 
-    @RequestMapping("/modules")
-    public ResultWrapper allModules() {
-        return this.roleManageService.allModules();
+    // ---------------为其他模块提供的接口-----------
+
+    @RequestMapping("/common/list")
+    public ResultWrapper commonList() {
+        return this.roleManageService.simpleList();
     }
 }

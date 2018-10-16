@@ -19,4 +19,6 @@ public interface RoleMapper {
     int deleteByRoleId(Integer roleId);
 
     int update(RoleEntity role);
+
+    List<RoleEntity> simpleList();
 }

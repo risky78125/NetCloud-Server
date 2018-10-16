@@ -1,16 +1,14 @@
 package com.wuqi.netcloud.service.impl;
 
-import com.wuqi.netcloud.mapper.condition.PageableExample;
 import com.wuqi.netcloud.commons.ResultWrapper;
 import com.wuqi.netcloud.controller.params.RoleBody;
-import com.wuqi.netcloud.entity.ModuleEntity;
 import com.wuqi.netcloud.entity.RoleEntity;
 import com.wuqi.netcloud.entity.RoleModuleEntity;
 import com.wuqi.netcloud.entity.map.RoleExMap;
 import com.wuqi.netcloud.exception.JsonResultException;
-import com.wuqi.netcloud.mapper.ModuleMapper;
 import com.wuqi.netcloud.mapper.RoleMapper;
 import com.wuqi.netcloud.mapper.RoleModuleMapper;
+import com.wuqi.netcloud.mapper.condition.PageableExample;
 import com.wuqi.netcloud.service.RoleManageService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,9 +25,6 @@ public class RoleManageServiceImpl implements RoleManageService {
 
     @Resource
     private RoleModuleMapper roleModuleMapper;
-
-    @Resource
-    private ModuleMapper moduleMapper;
 
     @Override
     public ResultWrapper findRoleByPage(int page) {
@@ -87,8 +82,8 @@ public class RoleManageServiceImpl implements RoleManageService {
     }
 
     @Override
-    public ResultWrapper allModules() {
-        List<ModuleEntity> list = this.moduleMapper.findAll();
+    public ResultWrapper simpleList() {
+        List<RoleEntity> list = this.roleMapper.simpleList();
         return ResultWrapper.success(list.size(), list);
     }
 }
