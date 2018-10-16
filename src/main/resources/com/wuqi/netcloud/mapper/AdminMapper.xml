@@ -49,7 +49,14 @@
     </resultMap>
 
     <select id="findDetailsById" resultMap="adminMap">
-        select admin.*, role.role_id, role.role_name, admin.admin_id = a2.admin_id as selected
+        select admin.admin_id,
+               admin.admin_code,
+               admin.admin_name,
+               admin.telephone,
+               admin.email,
+               role.role_id,
+               role.role_name,
+               admin.admin_id = a2.admin_id as selected
         from admin_info admin
                  cross join role_info role
                  left join admin_role ar on role.role_id = ar.role_id and ar.admin_id = admin.admin_id

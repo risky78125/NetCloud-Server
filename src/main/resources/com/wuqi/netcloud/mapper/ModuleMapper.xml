@@ -6,7 +6,6 @@
     <cache />
 
     <select id="findAll" resultType="moduleEntity">
-        select * from module_info
+        select * from module_info order by module_id
     </select>
-
 </mapper>

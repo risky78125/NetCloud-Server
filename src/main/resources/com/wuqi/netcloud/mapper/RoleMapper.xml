@@ -60,7 +60,7 @@
     </update>
 
     <select id="simpleList" resultType="roleEntity">
-        select role_id, role_name from role_info
+        select role_id, role_name from role_info order by role_id
     </select>
 
 </mapper>
